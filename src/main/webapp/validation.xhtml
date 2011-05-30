@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:s="http://jboss.org/seam/faces">
+<head>
+<title>Validation</title>
+</head>
+
+<body>
+
+  <h:messages/>
+
+  <h:form>
+  
+    <s:validateForm validatorId="EqualsValidator"/>
+  
+    <p>
+      Text 1:
+      <h:inputText id="text1" value="#{validationBean.text1}" required="true"/>
+    </p>  
+
+    <p>
+      Text 2:
+      <h:inputText id="text2" value="#{validationBean.text2}" required="true"/>
+    </p>
+    
+    <h:commandButton value="Submit" action="#{validationBean.action}"/>
+
+  </h:form>
+    
+</body>
+
+</html>
