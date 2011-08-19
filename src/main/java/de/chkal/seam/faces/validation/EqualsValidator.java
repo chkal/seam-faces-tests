@@ -13,6 +13,8 @@ import org.jboss.seam.faces.validation.InputElement;
 @FacesValidator("EqualsValidator")
 public class EqualsValidator implements Validator {
 
+  private static final long serialVersionUID = 1L;
+
   @Inject
   private InputElement<String> text1;
 

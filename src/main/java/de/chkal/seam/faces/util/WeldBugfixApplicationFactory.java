@@ -22,8 +22,8 @@ public class WeldBugfixApplicationFactory extends ApplicationFactory {
 
   @Override
   public void setApplication(Application application) {
+    this.application = application;
     delegate.setApplication(application);
-    this.application = application;;
   }
 
 }
