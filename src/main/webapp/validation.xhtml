@@ -16,14 +16,16 @@
   <h:form>
   
     <s:validateForm validatorId="EqualsValidator"/>
+    
+    <p>Both values have to be equal for the validation to succeed.</p>
   
     <p>
-      Text 1:
+      Value 1:
       <h:inputText id="text1" value="#{validationBean.text1}" required="true"/>
     </p>  
 
     <p>
-      Text 2:
+      Value 2:
       <h:inputText id="text2" value="#{validationBean.text2}" required="true"/>
     </p>
     

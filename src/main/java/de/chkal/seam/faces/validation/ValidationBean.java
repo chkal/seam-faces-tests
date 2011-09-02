@@ -1,6 +1,9 @@
 package de.chkal.seam.faces.validation;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 @Named
@@ -8,11 +11,15 @@ import javax.inject.Named;
 public class ValidationBean {
 
   private String text1;
-  
+
   private String text2;
-  
+
+  @Inject
+  private FacesContext facesContext;
+
   public String action() {
-    System.out.println("action(): "+text1+" + "+text2);
+    System.out.println("Action meothod got text1=" + text1 + ", text2=" + text2);
+    facesContext.addMessage(null, new FacesMessage("Valdiation success!"));
     return null;
   }
 
@@ -31,5 +38,5 @@ public class ValidationBean {
   public void setText2(String text2) {
     this.text2 = text2;
   }
-  
+
 }

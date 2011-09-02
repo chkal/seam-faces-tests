@@ -22,15 +22,15 @@ public class EqualsValidator implements Validator {
   private InputElement<String> text2;
 
   @Override
-  public void validate(FacesContext arg0, UIComponent arg1, Object arg2)
-      throws ValidatorException {
+  public void validate(FacesContext arg0, UIComponent arg1, Object arg2) throws ValidatorException {
 
-    System.out.println("------------> "+(text1 != null ? text1.getValue() : "not injected"));
-    System.out.println("------------> "+(text2 != null ? text2.getValue() : "not injected"));
-    
-    throw new ValidatorException( new FacesMessage("Failed1", "Failed2") );
-    
-    
+    System.out.println("EqualsValidator: value1=" + (text1 != null ? text1.getValue() : "not injected"));
+    System.out.println("EqualsValidator: value2=" + (text2 != null ? text2.getValue() : "not injected"));
+
+    if (text1 == null || text2 == null || !text1.getValue().equals(text2.getValue())) {
+      throw new ValidatorException(new FacesMessage("The values are not equal"));
+    }
+
   }
 
 }
