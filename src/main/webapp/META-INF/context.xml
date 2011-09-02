@@ -5,4 +5,6 @@
     type="javax.enterprise.inject.spi.BeanManager" 
     factory="org.jboss.weld.resources.ManagerObjectFactory" />
 
+<!--   <Environment name="jsf/ProjectStage" value="UnitTest" type="java.lang.String"/> -->
+
 </Context>

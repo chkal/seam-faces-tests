@@ -1,6 +1,9 @@
 package de.chkal.seam.faces.validation;
 
+import java.util.Locale;
+
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.inject.Produces;
 import javax.inject.Named;
 
 @Named
@@ -10,6 +13,12 @@ public class ValidationBean {
   private String text1;
   
   private String text2;
+  
+  @Produces
+  public Locale getLocale() {
+      return Locale.getDefault();
+  }
+  
   
   public String action() {
     System.out.println("action(): "+text1+" + "+text2);
