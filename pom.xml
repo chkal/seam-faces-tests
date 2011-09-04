@@ -8,8 +8,8 @@
   <name>seam-faces-tests Maven Webapp</name>
 
   <properties>
-    <myfaces.version>2.0.5</myfaces.version>
-    <mojarra.version>2.0.2</mojarra.version>
+    <myfaces.version>2.0.8</myfaces.version>
+    <mojarra.version>2.1.2</mojarra.version>
     <seamfaces.version>3.1.0-SNAPSHOT</seamfaces.version>
   </properties>
 
@@ -26,13 +26,25 @@
         </configuration>
       </plugin>
       
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <configuration>
+               <archive>
+                  <manifestEntries>
+                     <Dependencies>org.jboss.logging,org.jboss.logmanager</Dependencies>
+                  </manifestEntries>
+               </archive>
+            </configuration>
+         </plugin>      
+      
     </plugins>
   </build>
   
   <profiles>
 
     <profile>
-      <id>mojarra</id>
+      <id>tomcat-mojarra</id>
       <dependencies>
         <dependency>
           <groupId>com.sun.faces</groupId>
@@ -44,11 +56,21 @@
           <artifactId>jsf-impl</artifactId>
           <version>${mojarra.version}</version>
         </dependency> 
+        <dependency>
+          <groupId>javax.enterprise</groupId>
+          <artifactId>cdi-api</artifactId>
+          <version>1.0</version>
+        </dependency>
+        <dependency>
+          <groupId>org.jboss.weld.servlet</groupId>
+          <artifactId>weld-servlet</artifactId>
+          <version>1.1.0.Final</version>
+        </dependency>
       </dependencies>
     </profile>
     
     <profile>
-      <id>myfaces</id>
+      <id>tomcat-myfaces</id>
       <activation>
         <activeByDefault>true</activeByDefault>
       </activation>
@@ -62,6 +84,34 @@
           <groupId>org.apache.myfaces.core</groupId>
           <artifactId>myfaces-impl</artifactId>
           <version>${myfaces.version}</version>
+        </dependency>
+        <dependency>
+          <groupId>javax.enterprise</groupId>
+          <artifactId>cdi-api</artifactId>
+          <version>1.0</version>
+        </dependency>
+        <dependency>
+          <groupId>org.jboss.weld.servlet</groupId>
+          <artifactId>weld-servlet</artifactId>
+          <version>1.1.0.Final</version>
+        </dependency>
+      </dependencies>
+    </profile>
+    
+    <profile>
+      <id>jee6</id>
+      <dependencies>
+        <dependency>
+          <groupId>org.apache.myfaces.core</groupId>
+          <artifactId>myfaces-api</artifactId>
+          <version>${myfaces.version}</version>
+          <scope>provided</scope>
+        </dependency>
+        <dependency>
+          <groupId>javax.enterprise</groupId>
+          <artifactId>cdi-api</artifactId>
+          <version>1.0</version>
+          <scope>provided</scope>
         </dependency>
       </dependencies>
     </profile>
@@ -77,18 +127,6 @@
       <version>1.2.16</version>
     </dependency>
     
-    <!-- Weld -->
-    <dependency>
-      <groupId>javax.enterprise</groupId>
-      <artifactId>cdi-api</artifactId>
-      <version>1.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.jboss.weld.servlet</groupId>
-      <artifactId>weld-servlet</artifactId>
-      <version>1.1.0.Final</version>
-    </dependency>
-    
     <!-- Seam Faces -->
     <dependency>
       <groupId>org.jboss.seam.faces</groupId>
@@ -101,15 +139,6 @@
       <version>${seamfaces.version}</version>
       <scope>runtime</scope>
     </dependency>    
-
-    <!-- 
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>servlet-api</artifactId>
-      <version>2.5</version>
-      <scope>provided</scope>
-    </dependency>    
-     -->
 
   </dependencies>
   
